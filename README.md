@@ -270,4 +270,4 @@ Planned future enhancements for the lab include:
 - Threat hunting dashboards
 
 ## Project Status
-Completed - Splunk SIEM environment deployed, telemetry collection configured, dashboards and alerts implemented, and monitoring functionality validated through simulated attack activity and event analysis.
+in-Progress - Splunk SIEM environment deployed, telemetry collection configured, dashboards and alerts implemented, and monitoring functionality validated through simulated attack activity and event analysis.
