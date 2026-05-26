@@ -1,0 +1,35 @@
+========================================
+FAILED AUTHENTICATION DASHBOARD
+========================================
+
+index=main EventCode=4625
+| stats count by Account_Name
+
+
+========================================
+POWERSHELL EXECUTION DASHBOARD
+========================================
+
+index=sysmon powershell.exe
+
+
+========================================
+PROCESS CREATION DASHBOARD
+========================================
+
+index=sysmon "<EventID>1</EventID>"
+
+
+========================================
+TOP EXECUTED PROCESSES DASHBOARD
+========================================
+
+index=sysmon
+| top Image
+
+
+========================================
+NETWORK DISCOVERY DASHBOARD
+========================================
+
+index=sysmon ping.exe OR nslookup.exe
