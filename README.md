@@ -187,7 +187,7 @@ Centralized SOC dashboard displaying overall security monitoring activity.
 ## PowerShell Execution Monitoring
 PowerShell execution telemetry monitored through Sysmon logs.
 
-![PowerShell Detection](Screenshots/PowerShell-Detection-Search.png)
+![PowerShell Detection](Screenshots/Powershell-Detection-Search.png)
 
 ---
 
