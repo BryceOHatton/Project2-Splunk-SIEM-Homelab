@@ -179,21 +179,22 @@ Custom Splunk searches are included in the [Queries](Queries/) directory.
 ## SOC Monitoring Dashboard
 Centralized SOC dashboard displaying overall security monitoring activity.
 
-![SOC Dashboard](Screenshots/Dashboard.png)
-
+![SOC Dashboard 1](Screenshots/SOC-Monitoring-Dashboard-1.png)
+![SOC Dashboard 2](Screenshots/SOC-Monitoring-Dashboard-2.png)
+![SOC Dashboard 3](Screenshots/SOC-Monitoring-Dashboard-3.png)
 ---
 
 ## PowerShell Execution Monitoring
 PowerShell execution telemetry monitored through Sysmon logs.
 
-![PowerShell Detection](Screenshots/PowerShell-Detection.png)
+![PowerShell Detection](Screenshots/PowerShell-Detection-Monitoring.png)
 
 ---
 
 ## Failed Login Activity
 Failed authentication attempts successfully detected and monitored.
 
-![Failed Login Detection](Screenshots/Failed-Login-Detection.png)
+![Failed Login Detection](Screenshots/Failed-Login-Simulation.png)
 
 ---
 
