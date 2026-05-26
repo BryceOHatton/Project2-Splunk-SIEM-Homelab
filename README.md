@@ -7,6 +7,18 @@ Implemented custom searches, dashboards, and alerts to monitor authentication ac
 
 ---
 
+# Objectives
+- Deploy and configure Splunk Enterprise SIEM
+- Configure Sysmon endpoint telemetry collection
+- Centralize Windows Security and Sysmon logs
+- Configure Splunk Universal Forwarders
+- Build SOC-style dashboards and detections
+- Create real-time security alerts
+- Simulate attack activity to validate detections
+- Develop practical SIEM investigation and monitoring skills
+
+---
+
 # Environment
 - Splunk Enterprise 9.4.2
 - Windows 11 Endpoint Monitoring System
@@ -14,6 +26,14 @@ Implemented custom searches, dashboards, and alerts to monitor authentication ac
 - Sysmon Telemetry Collection
 - Splunk Universal Forwarder
 - VMware Workstation
+
+---
+
+# Architecture Diagram
+
+The diagram below illustrates the Splunk SIEM architecture, endpoint telemetry flow, and centralized log collection process used throughout the lab.
+
+![Architecture Diagram](Diagrams/splunk-siem-architecture.png)
 
 ---
 
@@ -25,6 +45,18 @@ Implemented custom searches, dashboards, and alerts to monitor authentication ac
 - Splunk Search & Reporting Application
 - SOC Monitoring Dashboard
 - Real-Time Detection Alerts
+
+---
+
+# Tools Used
+- Splunk Enterprise
+- Splunk Universal Forwarder
+- Sysmon
+- VMware Workstation
+- Windows Event Viewer
+- PowerShell
+- Windows Defender Firewall
+- Kali Linux
 
 ---
 
@@ -46,7 +78,6 @@ Implemented custom searches, dashboards, and alerts to monitor authentication ac
 
 ## Detection Engineering
 Created custom Splunk searches and real-time alerts for:
-
 - Failed authentication attempts
 - PowerShell execution activity
 - Command shell execution
@@ -69,26 +100,31 @@ Built a centralized SOC-style monitoring dashboard to visualize:
 ## Security Monitoring Searches
 
 ### Failed Authentication Monitoring
+
 ```spl
 index=main EventCode=4625
 ```
 
 ### PowerShell Execution Detection
+
 ```spl
 index=sysmon powershell.exe
 ```
 
 ### Command Execution Monitoring
+
 ```spl
 index=sysmon cmd.exe
 ```
 
 ### Network Discovery Activity
+
 ```spl
 index=sysmon ping.exe OR nslookup.exe
 ```
 
 ### Sysmon Telemetry Monitoring
+
 ```spl
 index=sysmon
 ```
@@ -143,49 +179,75 @@ Custom Splunk searches are included in the [Queries](Queries/) directory.
 ## SOC Monitoring Dashboard
 Centralized SOC dashboard displaying overall security monitoring activity.
 
-![SOC Dashboard](Screenshots/Dashboards/SOC-Monitoring-Dashboard-1.png)
-
----
-
-## Process Creation Activity Monitoring
-Real-time visualization of process creation telemetry.
-
-![Process Monitoring](Screenshots/Sysmon/Process-Creation-Monitoring.png)
+![SOC Dashboard](Screenshots/Dashboard.png)
 
 ---
 
 ## PowerShell Execution Monitoring
 PowerShell execution telemetry monitored through Sysmon logs.
 
-![PowerShell Detection](Screenshots/Sysmon/Powershell-Detection-Search.png)
-
----
-
-## Network Discovery Detection
-Detection of reconnaissance-related commands such as nslookup and ping.
-
-![Network Discovery](Screenshots/Alerts/Network-Discovery-Detection.png)
+![PowerShell Detection](Screenshots/PowerShell-Detection.png)
 
 ---
 
 ## Failed Login Activity
 Failed authentication attempts successfully detected and monitored.
 
-![Failed Logins](Screenshots/Attack-Simulations/Failed-Login-Simulation.png)
+![Failed Login Detection](Screenshots/Failed-Login-Detection.png)
+
+---
+
+## Network Discovery Detection
+Detection of reconnaissance-related commands such as nslookup and ping.
+
+![Network Discovery Detection](Screenshots/Network-Discovery-Detection.png)
 
 ---
 
 ## Triggered Real-Time Alerts
 Real-time alerts triggered through configured Splunk detections.
 
-![Triggered Alerts](Screenshots/Alerts/Triggered-Alerts.png)
+![Triggered Alerts](Screenshots/Triggered-Alerts.png)
 
 ---
 
-## Universal Forwarder Log Ingestion
-Validation of Sysmon telemetry ingestion through the Splunk Universal Forwarder.
+## Sysmon Telemetry Ingestion
+Validation of Sysmon telemetry ingestion into Splunk.
 
-![Log Ingestion](Screenshots/Ingestion/Universal-Forwarder-Ingestion.png)
+![Sysmon Logs](Screenshots/Sysmon-Logs.png)
+
+---
+
+## Command Execution Monitoring
+Command-line execution activity detected through Sysmon telemetry.
+
+![CMD Execution](Screenshots/CMD-Execution.png)
+
+---
+
+# Repository Structure
+
+```text
+Project1-Splunk-SIEM-Homelab
+│
+├── README.md
+│
+├── Screenshots
+│   ├── Dashboard.png
+│   ├── PowerShell-Detection.png
+│   ├── Failed-Login-Detection.png
+│   ├── Network-Discovery-Detection.png
+│   ├── Triggered-Alerts.png
+│   ├── Sysmon-Logs.png
+│   ├── CMD-Execution.png
+│
+├── Queries
+│   ├── Searches.txt
+│
+├── Configurations
+│   ├── Alert-Configurations.txt
+│   ├── Dashboard-Queries.txt
+```
 
 ---
 
@@ -230,6 +292,29 @@ Validation of Sysmon telemetry ingestion through the Splunk Universal Forwarder.
 - Alert Triage
 - Attack Simulation Validation
 - Security Monitoring Workflows
+
+---
+
+# Lessons Learned
+This project provided practical experience with:
+- SIEM deployment and configuration
+- Endpoint telemetry collection
+- Windows Security Event analysis
+- Detection engineering workflows
+- Security monitoring and alert validation
+- Attack simulation and event investigation
+
+The lab also improved troubleshooting skills related to log ingestion, dashboard development, alert tuning, and Windows event monitoring.
+
+---
+
+# Future Improvements
+Planned future enhancements for the lab include:
+- Microsoft Sentinel integration
+- Cloud SIEM monitoring
+- Additional Sysmon detection tuning
+- Expanded attack simulation scenarios
+- Threat hunting dashboards
 
 ---
 
