@@ -1,0 +1,58 @@
+========================================
+FAILED AUTHENTICATION MONITORING
+========================================
+
+index=main EventCode=4625
+
+Purpose:
+Detect failed Windows authentication attempts.
+
+
+========================================
+POWERSHELL EXECUTION DETECTION
+========================================
+
+index=sysmon powershell.exe
+
+Purpose:
+Detect PowerShell execution activity using Sysmon telemetry.
+
+
+========================================
+COMMAND EXECUTION MONITORING
+========================================
+
+index=sysmon cmd.exe
+
+Purpose:
+Detect command prompt execution activity.
+
+
+========================================
+NETWORK DISCOVERY DETECTION
+========================================
+
+index=sysmon ping.exe OR nslookup.exe
+
+Purpose:
+Detect reconnaissance and network discovery activity.
+
+
+========================================
+PROCESS CREATION MONITORING
+========================================
+
+index=sysmon "<EventID>1</EventID>"
+
+Purpose:
+Monitor Sysmon process creation telemetry.
+
+
+========================================
+SYSMON TELEMETRY INGESTION
+========================================
+
+index=sysmon
+
+Purpose:
+Validate Sysmon telemetry ingestion into Splunk.
