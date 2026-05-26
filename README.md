@@ -320,4 +320,4 @@ Planned future enhancements for the lab include:
 ---
 
 # Project Status
-Completed — Splunk SIEM environment successfully deployed, telemetry centralized, detections configured, dashboards created, and monitoring functionality validated through simulated attack activity and real-time alerting.
+Completed - Splunk SIEM environment successfully deployed, telemetry centralized, detections configured, dashboards created, and monitoring functionality validated through simulated attack activity and real-time alerting.
