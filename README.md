@@ -1,272 +1,237 @@
-# Homelab Project 1: Splunk SIEM Security Monitoring Lab
+# Homelab Project 2: Splunk SIEM Security Monitoring Lab
 
 ## Overview
-Built and configured a Splunk SIEM monitoring environment to develop hands-on experience in security monitoring, threat detection, log analysis, and alerting. Configured Splunk Enterprise, Sysmon telemetry collection, Universal Forwarders, dashboards, and real-time alerts to centralize Windows security logs and simulate enterprise SOC monitoring workflows.
+Built and configured a Splunk SIEM monitoring environment to develop hands-on experience in security monitoring, threat detection, log analysis, and alerting. Configured Splunk Enterprise, Sysmon telemetry collection, and Universal Forwarders to centralize Windows security logs and simulate enterprise SOC monitoring workflows.
 
-## Objectives
-- Deploy and configure Splunk Enterprise SIEM
-- Configure Sysmon endpoint telemetry collection
-- Centralize Windows Security and Sysmon logs
-- Configure Splunk Universal Forwarders
-- Build SOC-style dashboards and detections
-- Create real-time security alerts
-- Simulate attack activity to validate detections
-- Develop practical SIEM investigation and monitoring skills
+Implemented custom searches, dashboards, and alerts to monitor authentication activity, PowerShell execution, process creation events, and network discovery activity. Validated detections through controlled attack simulations and real-time event analysis.
 
-## Environment
-- Splunk Enterprise (SIEM Server)
+---
+
+# Environment
+- Splunk Enterprise 9.4.2
 - Windows 11 Endpoint Monitoring System
-- Kali Linux (Attack Simulation System)
+- Kali Linux Attack Simulation System
 - Sysmon Telemetry Collection
+- Splunk Universal Forwarder
 - VMware Workstation
 
-## Architecture Diagram
+---
 
-The diagram below illustrates the Splunk SIEM architecture, endpoint telemetry flow, and centralized log collection process used throughout the lab.
-
-![Architecture Diagram](Diagrams/splunk-siem-architecture.png)
-
-## Key Components
+# Key Components
 - SPLUNK1 (Splunk Enterprise SIEM Server)
 - CLIENT1 (Windows Endpoint Monitoring System)
-- KALI1 (Attacker Security Testing Machine)
-- Splunk Universal Forwarder
-- Sysmon Operational Logging
+- KALI1 (Attack Simulation System)
+- Sysmon Endpoint Telemetry
+- Splunk Search & Reporting Application
+- SOC Monitoring Dashboard
+- Real-Time Detection Alerts
 
-## Tools Used
-- Splunk Enterprise
-- Splunk Universal Forwarder
-- Sysmon
-- VMware Workstation
-- Windows Event Viewer
-- PowerShell
-- Windows Defender Firewall
-- Kali Linux
+---
 
-## Security Implementation
+# Security Implementation
 
-### SIEM Configuration
+## SIEM Deployment
 - Installed and configured Splunk Enterprise
-- Configured Splunk Universal Forwarders for centralized log collection
-- Created custom indexes for Sysmon telemetry
-- Developed Splunk dashboards and real-time monitoring panels
-- Configured centralized Windows Security Event Log ingestion
+- Configured centralized log ingestion from Windows systems
+- Deployed Splunk Universal Forwarder on monitored endpoints
+- Validated telemetry ingestion into Splunk indexes
 
-### Sysmon Telemetry Collection
-- Installed Sysmon for advanced endpoint monitoring
-- Collected process creation telemetry
-- Monitored PowerShell execution activity
-- Logged command-line activity and parent-child process relationships
-- Monitored endpoint activity through Sysmon Event ID 1 telemetry
+## Sysmon Telemetry Collection
+- Installed Sysmon endpoint monitoring
+- Configured Sysmon operational logging
+- Monitored process creation activity
+- Collected PowerShell execution telemetry
+- Captured command-line process activity
+- Centralized Sysmon telemetry within Splunk
 
-### Security Monitoring
-- Centralized authentication monitoring
-- Created custom Splunk searches for detection visibility
-- Configured real-time alerts for suspicious activity
-- Developed SOC-style dashboards for security event analysis
+## Detection Engineering
+Created custom Splunk searches and real-time alerts for:
 
-## Monitoring and Detection
+- Failed authentication attempts
+- PowerShell execution activity
+- Command shell execution
+- Network discovery and reconnaissance activity
+- Process creation monitoring
 
-### Dashboards Created
-- Failed Authentication Monitoring
-- Account Lockout Monitoring
-- PowerShell Execution Monitoring
-- Process Creation Monitoring
-- Top Executed Processes
-- Security Event Volume Monitoring
+## SOC Dashboard Development
+Built a centralized SOC-style monitoring dashboard to visualize:
+- Total security event activity
+- Process creation trends
+- PowerShell execution monitoring
+- Failed login activity
+- Network discovery activity
+- Real-time event monitoring
 
-### Splunk Alerts Configured
+---
 
-| Alert | Severity |
-|---|---|
-| PowerShell Execution Detection | High |
-| Failed Authentication Detection | Medium |
-| Account Lockout Detection | High |
-| Suspicious Command Shell Activity | Medium |
-| Sysmon Process Monitoring | Medium |
+# Monitoring and Detection
 
-### Example Detection Queries
+## Security Monitoring Searches
 
-#### Failed Authentication Monitoring
-
+### Failed Authentication Monitoring
 ```spl
 index=main EventCode=4625
-| stats count by Account_Name
 ```
 
-#### PowerShell Detection
-
+### PowerShell Execution Detection
 ```spl
 index=sysmon powershell.exe
 ```
 
-#### Account Lockout Detection
-
+### Command Execution Monitoring
 ```spl
-index=main EventCode=4740
+index=sysmon cmd.exe
 ```
 
-#### Process Creation Monitoring
-
+### Network Discovery Activity
 ```spl
-index=sysmon "<EventID>1</EventID>"
+index=sysmon ping.exe OR nslookup.exe
 ```
 
-### Key Security Events Analyzed
-- 4624 - Successful logon
-- 4625 - Failed logon attempt
-- 4740 - Account lockout
-- Sysmon Event ID 1 - Process creation activity
+### Sysmon Telemetry Monitoring
+```spl
+index=sysmon
+```
 
-## MITRE ATT&CK Techniques Simulated
+---
 
-| Technique | Description |
-|---|---|
-| T1110 | Brute Force Authentication Attempts |
-| T1059.001 | PowerShell Execution |
-| T1059.003 | Windows Command Shell |
-| T1087 | Account Discovery |
-| T1078 | Valid Account Activity |
+# Real-Time Alerts Configured
 
-## Attack Simulation
+| Alert Name | Severity | Purpose |
+|---|---|---|
+| Failed Authentication Detection | High | Detect repeated failed login attempts |
+| PowerShell Execution Detection | Medium | Monitor suspicious PowerShell execution |
+| Suspicious Command Shell Activity | Medium | Detect command shell execution activity |
+| Network Discovery Activity | Medium | Detect reconnaissance-related commands |
+| Account Lockout Detection | High | Detect account lockout activity |
 
-To validate the configured monitoring environment, the following scenarios were performed:
-- Simulated repeated failed login attempts to generate authentication events
-- Triggered account lockouts through repeated failed authentication attempts
-- Executed PowerShell commands to validate telemetry ingestion
-- Generated command prompt activity to test process monitoring visibility
-- Simulated unauthorized access attempts and reconnaissance activity
+---
 
-Following these events:
-- Reviewed logs and telemetry within Splunk SIEM
-- Validated Sysmon event ingestion and search visibility
-- Verified dashboard updates and alert generation
-- Analyzed Windows Security Event Logs and process activity
-- Demonstrated basic detection engineering and monitoring workflows
+# Attack Simulation
+
+To validate the configured detections and monitoring capabilities, the following simulations were performed:
+
+- Executed PowerShell commands to generate Sysmon telemetry
+- Performed failed login attempts to trigger authentication monitoring
+- Executed command shell activity using cmd.exe
+- Performed network discovery activity using ping and nslookup
+- Generated process creation events to validate telemetry collection
+- Triggered real-time alerts within Splunk
 
 Results:
-- Splunk successfully centralized Windows and Sysmon telemetry
-- Security events were searchable and visible in dashboards
-- Alerts triggered successfully for monitored activity
-- Simulated attack activity was logged and validated
-- Endpoint telemetry collection functioned as expected
+- Security telemetry was successfully ingested into Splunk
+- Real-time alerts triggered as expected
+- Dashboard visualizations updated dynamically
+- PowerShell and command execution activity was detected
+- Failed login activity was logged and searchable
+- Network discovery activity was successfully monitored
 
-## Validation and Testing
+---
 
-Screenshots are included in the [Screenshots](Screenshots/) directory to show how everything was configured and validated throughout the lab.
+# Validation and Testing
 
-Configuration files can be found in the [Configurations](./Configurations) directory.
+Screenshots are included in the [Screenshots](Screenshots/) directory to demonstrate deployment, telemetry ingestion, monitoring, alerting, and dashboard functionality throughout the lab.
 
-Splunk search queries are included in the [Queries](./Queries) directory.
+Configuration files can be found in the [Configurations](Configurations/) directory.
 
-### Failed Authentication Monitoring
-Failed login attempts monitored through Splunk dashboards.
+Custom Splunk searches are included in the [Queries](Queries/) directory.
 
-![Failed Authentication Monitoring](Screenshots/Dashboards/Failed-Authentication-Monitoring.png)
+---
 
-### PowerShell Execution Monitoring
-PowerShell execution activity detected through Sysmon telemetry.
+# Dashboard Monitoring
 
-![PowerShell Monitoring](Screenshots/Dashboards/PowerShell-Monitoring.png)
+## SOC Monitoring Dashboard
+Centralized SOC dashboard displaying overall security monitoring activity.
 
-### Account Lockout Detection
-Account lockout activity detected and monitored through Splunk.
+![SOC Dashboard](Screenshots/Dashboards/SOC-Monitoring-Dashboard-1.png)
 
-![Account Lockout Detection](Screenshots/Dashboards/Account-Lockout-Monitoring.png)
+---
 
-### Sysmon Process Creation Monitoring
-Process creation telemetry analyzed using Sysmon Event ID 1.
+## Process Creation Activity Monitoring
+Real-time visualization of process creation telemetry.
 
-![Process Creation Monitoring](Screenshots/Sysmon/Process-Creation-Monitoring.png)
+![Process Monitoring](Screenshots/Sysmon/Process-Creation-Monitoring.png)
 
-### Splunk Alert Configuration
-Real-time Splunk alerts configured for suspicious activity detection.
+---
 
-![Splunk Alerts](Screenshots/Alerts/Splunk-Alert-Configuration.png)
+## PowerShell Execution Monitoring
+PowerShell execution telemetry monitored through Sysmon logs.
 
-## Repository Structure
+![PowerShell Detection](Screenshots/Sysmon/Powershell-Detection-Search.png)
 
-```text
-/Screenshots
-    /Dashboards
-    /Alerts
-    /Sysmon
-    /Splunk-Searches
-    /Attack-Simulations
+---
 
-/Queries
-    failed-logins.txt
-    powershell-detection.txt
-    process-creation.txt
-    account-lockouts.txt
-    sysmon-searches.txt
+## Network Discovery Detection
+Detection of reconnaissance-related commands such as nslookup and ping.
 
-/Alerts
-    splunk-alerts.md
+![Network Discovery](Screenshots/Alerts/Network-Discovery-Detection.png)
 
-/Configurations
-    inputs.conf
-    sysmonconfig-export.xml
+---
 
-/Diagrams
-    splunk-siem-architecture.png
+## Failed Login Activity
+Failed authentication attempts successfully detected and monitored.
 
-README.md
-```
+![Failed Logins](Screenshots/Attack-Simulations/Failed-Login-Simulation.png)
 
-## Lessons Learned
+---
 
-This project provided practical experience with:
-- SIEM deployment and configuration
-- Endpoint telemetry collection
-- Windows Security Event analysis
-- Detection engineering workflows
-- Security monitoring and alert validation
-- Attack simulation and event investigation
+## Triggered Real-Time Alerts
+Real-time alerts triggered through configured Splunk detections.
 
-The lab also improved troubleshooting skills related to log ingestion, dashboard development, alert tuning, and Windows event monitoring.
+![Triggered Alerts](Screenshots/Alerts/Triggered-Alerts.png)
 
-## Key Takeaways
-- Configured a centralized SIEM monitoring environment using Splunk Enterprise
-- Collected and analyzed Windows Security and Sysmon telemetry
-- Developed practical security monitoring and threat detection workflows
-- Configured dashboards and alerts for real-time monitoring visibility
-- Validated telemetry collection through simulated attack activity
-- Gained hands-on experience with Splunk SIEM administration and detection engineering
+---
 
-## Skills Demonstrated
+## Universal Forwarder Log Ingestion
+Validation of Sysmon telemetry ingestion through the Splunk Universal Forwarder.
 
-**SIEM & Security Monitoring**
-- Splunk Enterprise Administration  
-- SIEM Configuration and Monitoring  
-- Security Event Monitoring  
-- Detection Engineering  
+![Log Ingestion](Screenshots/Ingestion/Universal-Forwarder-Ingestion.png)
 
-**Endpoint Telemetry**
-- Sysmon Configuration  
-- Windows Event Log Analysis  
-- Process Creation Monitoring  
-- PowerShell Activity Monitoring  
+---
 
-**Threat Detection**
-- Authentication Monitoring  
-- Failed Login Detection  
-- Account Lockout Monitoring  
-- Suspicious Process Detection  
+# Key Takeaways
+- Deployed and configured a functional Splunk SIEM environment
+- Centralized Windows Security and Sysmon telemetry
+- Developed practical experience with SIEM log analysis and monitoring
+- Built SOC-style dashboards and visualizations
+- Created custom Splunk detections and real-time alerts
+- Simulated attack activity to validate monitoring capabilities
+- Gained hands-on experience with endpoint telemetry collection
+- Performed event analysis using Splunk Search Processing Language (SPL)
 
-**Security Operations**
-- Security Monitoring and Analysis  
-- Alert Configuration and Validation  
-- Attack Simulation and Detection Validation  
-- Basic Incident Detection and Investigation  
+---
 
-## Future Improvements
-Planned future enhancements for the lab include:
-- Microsoft Sentinel integration
-- Cloud SIEM monitoring
-- Additional Sysmon detection tuning
-- Expanded attack simulation scenarios
-- Threat hunting dashboards
+# Skills Demonstrated
 
-## Project Status
-Completed - Splunk SIEM environment deployed, telemetry collection configured, dashboards and alerts implemented, and monitoring functionality validated through simulated attack activity and event analysis.
+## SIEM & Security Monitoring
+- Splunk Enterprise Administration
+- Security Information and Event Management (SIEM)
+- Security Event Monitoring
+- Log Aggregation and Analysis
+- Security Dashboard Development
+
+## Detection Engineering
+- Splunk Search Processing Language (SPL)
+- Real-Time Alert Development
+- Threat Detection
+- Authentication Monitoring
+- Process Execution Monitoring
+
+## Endpoint Telemetry
+- Sysmon Configuration and Monitoring
+- Windows Event Log Analysis
+- PowerShell Activity Monitoring
+- Process Creation Monitoring
+- Command-Line Auditing
+
+## Incident Detection & Analysis
+- Threat Hunting
+- Security Event Investigation
+- Alert Triage
+- Attack Simulation Validation
+- Security Monitoring Workflows
+
+---
+
+# Project Status
+Completed — Splunk SIEM environment successfully deployed, telemetry centralized, detections configured, dashboards created, and monitoring functionality validated through simulated attack activity and real-time alerting.
