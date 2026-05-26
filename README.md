@@ -33,7 +33,7 @@ Implemented custom searches, dashboards, and alerts to monitor authentication ac
 
 The diagram below illustrates the Splunk SIEM architecture, endpoint telemetry flow, and centralized log collection process used throughout the lab.
 
-![Architecture Diagram](Diagrams/splunk-siem-architecture.png)
+![Architecture Diagram](Screenshots/Architecture.png)
 
 ---
 
