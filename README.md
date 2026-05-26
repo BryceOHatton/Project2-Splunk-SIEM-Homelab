@@ -1,4 +1,4 @@
-# Homelab Project 2: Splunk SIEM Security Monitoring Lab
+# Homelab Project 1: Splunk SIEM Security Monitoring Lab
 
 ## Overview
 Built and configured a Splunk SIEM monitoring environment to develop hands-on experience in security monitoring, threat detection, log analysis, and alerting. Configured Splunk Enterprise, Sysmon telemetry collection, Universal Forwarders, dashboards, and real-time alerts to centralize Windows security logs and simulate enterprise SOC monitoring workflows.
@@ -264,10 +264,9 @@ The lab also improved troubleshooting skills related to log ingestion, dashboard
 Planned future enhancements for the lab include:
 - Microsoft Sentinel integration
 - Cloud SIEM monitoring
-- Vulnerability management with Nessus
 - Additional Sysmon detection tuning
 - Expanded attack simulation scenarios
 - Threat hunting dashboards
 
 ## Project Status
-In-Progress - Splunk SIEM environment deployed, telemetry collection configured, dashboards and alerts implemented, and monitoring functionality validated through simulated attack activity and event analysis.
+Completed - Splunk SIEM environment deployed, telemetry collection configured, dashboards and alerts implemented, and monitoring functionality validated through simulated attack activity and event analysis.
