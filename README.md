@@ -215,14 +215,14 @@ Real-time alerts triggered through configured Splunk detections.
 ## Sysmon Telemetry Ingestion
 Validation of Sysmon telemetry ingestion into Splunk.
 
-![Sysmon Logs](Screenshots/Sysmon-Logs.png)
+![Sysmon Logs](Screenshots/Universal-Forwarder-Ingestion.png)
 
 ---
 
 ## Command Execution Monitoring
 Command-line execution activity detected through Sysmon telemetry.
 
-![CMD Execution](Screenshots/CMD-Execution.png)
+![CMD Execution](Screenshots/CMD-Execution-Simulation.png)
 
 ---
 
